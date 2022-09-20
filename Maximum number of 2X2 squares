@@ -1,0 +1,6 @@
+long long int numberOfSquares(long long int base)
+    {
+        long long x=base/2;
+        long long ans=((x*x)-x)/2;
+        return ans;
+    }
