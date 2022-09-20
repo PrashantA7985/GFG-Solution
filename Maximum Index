@@ -1,0 +1,27 @@
+ int maxIndexDiff(int a[], int n) 
+    {  
+         vector<int>data;
+        vector<pair<int,int>>v;
+          v.push_back({a[n-1],(n-1)});
+          data.push_back(a[n-1]);
+          for(int i=n-2;i>=0;i--){
+              if(v.back().first<a[i]){
+              v.push_back({a[i],i});
+              data.push_back(a[i]);
+          }
+          }
+          int ans=INT_MIN;
+          sort(data.begin(),data.end());
+          sort(v.begin(),v.end());
+          for(int i=0;i<n;i++){
+               auto x=lower_bound(data.begin(),data.end(),a[i]);
+               int index=x-data.begin();
+               ans=max(ans,v[index].second-i);
+              
+          }
+          if(ans<0)ans=-1;
+        
+          return ans;
+          
+   
+    }
