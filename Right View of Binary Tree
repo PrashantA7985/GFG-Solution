@@ -1,0 +1,39 @@
+class Solution
+{
+    public:
+   
+    void solve(Node *root,vector<vector<int>>&v){
+     queue<Node*>q;
+ q.push(root);
+ if(root==NULL)return ;
+ while(1){
+     int size=q.size();
+     if(size==0)return ;
+     vector<int>data;
+     while(size!=0){
+         Node *temp=q.front();
+         q.pop();
+         data.push_back(temp->data);
+         if(temp->left!=NULL)q.push(temp->left);
+         if(temp->right!=NULL)q.push(temp->right);
+         size--;
+     }
+     v.push_back(data);
+ }
+ return ;
+}
+
+
+
+
+    vector<int> rightView(Node *root)
+    {
+        vector<vector<int>>v;
+  solve(root,v);
+ vector<int>ans;
+ for(int i=0;i<v.size();i++){
+     ans.push_back(v[i][v[i].size()-1]);
+ }
+ return ans;
+    }
+};
