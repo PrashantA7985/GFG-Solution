@@ -1,0 +1,22 @@
+class Solution{
+public:
+    vector<int> prefixCount(int n, int q, string li[], string s[])
+    {
+        vector<int>ans;
+        map<string,int>m;
+        for(int i=0;i<n;i++){
+            string r;
+            for(int j=0;j<li[i].size();j++){
+                r.push_back(li[i][j]);
+              
+                m[r]++;
+            }
+        }
+        for(int i=0;i<q;i++){
+         if(m.find(s[i])!=m.end())ans.push_back(m[s[i]]);
+         else ans.push_back(0);
+        }
+        return ans;
+        
+    } 
+};
