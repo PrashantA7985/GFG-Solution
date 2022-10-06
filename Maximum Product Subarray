@@ -1,0 +1,30 @@
+	long long maxProduct(vector<int> v, int n) {
+	    long long left=v[0];
+	    long long right=v[n-1];
+	    long long product=1;
+	    bool zeropresent=false;
+	    for(auto x:v){
+	        product*=x;
+	        if(x==0){
+	            product=1;
+	            zeropresent=true;
+	            continue;
+	        }
+	        left=max(left,product);
+	    }
+	    product=1;
+	    for(int i=n-1;i>=0;i--){
+	        product*=v[i];
+	        if(v[i]==0){
+	            product=1;
+	            zeropresent=true;
+	            continue;
+	        }
+	        right=max(right,product);
+	    }
+	    long long y=0;
+	    if(zeropresent)return max({right,left,y});
+	    return max(right,left);
+	}
+	    
+};
