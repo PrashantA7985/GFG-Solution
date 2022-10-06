@@ -1,0 +1,40 @@
+class Solution {
+  public:
+
+    string lexicographicallySmallest(string s, int k) {
+        int n=s.size();
+        
+       if(__builtin_popcount(n)==1) {
+           k=k/2;
+       }
+       else{
+           k=k*2;
+       }
+       if(k>=n){
+           return "-1";
+       }
+      stack<char>st;
+      int rem=0;
+      for(int i=0;i<n;i++){
+         
+          while((!(st.empty())  && st.top()>s[i]) && rem<k){
+              st.pop();
+              rem++;
+          }
+          st.push(s[i]);
+      }
+      while(!st.empty() && rem<k){
+          st.pop();
+          rem++;
+      }
+      string ans;
+      while(!st.empty()){
+          char x=st.top();
+          ans.push_back(x);
+          st.pop();
+      }
+        reverse(ans.begin(),ans.end());
+        return ans;
+        
+    }
+};
