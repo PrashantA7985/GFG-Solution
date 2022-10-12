@@ -1,0 +1,25 @@
+class Solution{
+public:
+      string maxSum(string w,char x[], int b[],int n){
+           string ans;
+           int z=INT_MIN;
+           int k=0;
+           map<char,int>m;
+           for(int i=0;i<n;i++)m[x[i]]=b[i];
+           int sum=0;
+           for(int i=0;i<w.size();i++){
+               if(m.find(w[i])!=m.end())sum+=m[w[i]];
+               else sum+=w[i];
+                if(z<sum){
+                   z=sum;
+                  ans=w.substr(k,i-k+1); 
+               }
+               if(sum<0){
+                   sum=0;
+                   k=i+1;
+               }
+               
+           }
+           return ans;
+      }
+};
